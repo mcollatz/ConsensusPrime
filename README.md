@@ -23,7 +23,7 @@ python3.8 /path_to/consensus_prime.py -infile /path_to/multifasta.fna --primer3 
 
 command | what it does
   ------------- | -------------
--i, --infile              |Multi- or Singe- Fasta file with protein sequences.  [required]
+-i, --infile              |Multi-Fasta file with gene sequences.  [required]
 -x, --primer3             |Primer3 parameter file. [required]
 -o, --outdir              |Specifies output directory. Default = .
 -d, --delim               |Delimiter char for fasta header. Default = White space
