@@ -16,7 +16,7 @@ clustalx (or another alignment visualisation programm)
 **Example**
 
 ```bash
-consensus_prime.py -infile /path_to/multifasta.fna --primer3 /path_to/primer3_parameters.txt
+python3.8 /path_to/consensus_prime.py -infile /path_to/multifasta.fna --primer3 /path_to/primer3_parameters.txt
 ```
 
 **Options:**
