@@ -16,7 +16,7 @@ clustalx (or another alignment visualisation programm)
 ** Example**
 
 ```bash
-consensus_prime.py -i /path_to/multifasta.fna --primer3 /path_to/primer3_parameters.txt
+consensus_prime.py -infile /path_to/multifasta.fna --primer3 /path_to/primer3_parameters.txt
 ```
 
 **Options:**
@@ -24,11 +24,14 @@ consensus_prime.py -i /path_to/multifasta.fna --primer3 /path_to/primer3_paramet
 command | what it does
   ------------- | -------------
 -i, --infile          |Multi- or Singe- Fasta file with protein sequences.  [required]
--o, --outdir          |Specifies output directory. Default = .
---delim               |Delimiter char for fasta header. Default = White space
---idpos               |Position of gene ID in fasta header. Zero based. Default = 0
 -x, --primer3         | Primer3 parameter file. [required]
--p, --processes       |Number of processes used for predictions. Default = #CPU-cores
+-o, --outdir          |Specifies output directory. Default = .
+-d, --delim               |Delimiter char for fasta header. Default = White space
+-p, --position               |Position of gene ID in fasta header. Zero based. Default = 0
+-k, --keepduplicates  | Keep duplicate sequences. Default = False
+-c, --consensusthreshold  | Removes sequences with higher gap to sequence ratio. Default = 0.2
+--primers             | Known primers for visualisation in the final alignment in multifasta format.
+--negativesequences   | File with sequences that get their consensus sequence added to the final alignment in multifasta format.
 -h, --help            |show this message and exit
 
 
