@@ -13,7 +13,7 @@ primer3
 clustalx (or another alignment visualisation programm)
 
 ## Usage
-** Example**
+**Example**
 
 ```bash
 consensus_prime.py -infile /path_to/multifasta.fna --primer3 /path_to/primer3_parameters.txt
@@ -37,7 +37,14 @@ command | what it does
 
 
 ## We also provide a Docker image for ConsensusPrime
-Simply pull and run a ready-to-use image from Dockerhub:  
+Simply pull and run a ready-to-use image from Dockerhub:
+
+**Show --help**
+```bash
+docker run mcollatz/consensusprime:1.0
+```
+
+**Example**
 ```bash
 docker run -t --rm -v /path/to/dir/with/your/input/files/:/in \
 -v /path/to/dir/for/results/:/out \
