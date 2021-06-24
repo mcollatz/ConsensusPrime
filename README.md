@@ -26,8 +26,7 @@ command | what it does
 -i, --infile              |Multi-Fasta file with gene sequences.  [required]
 -x, --primer3             |Primer3 parameter file. [required]
 -o, --outdir              |Specifies output directory. Default = .
--d, --delim               |Delimiter char for fasta header. Default = White space
--p, --position            |Position of gene ID in fasta header. Zero based. Default = 0
+-t, --threads             |Number of threads used by MAFFT. Default = -1 (all)
 -k, --keepduplicates      |Keep duplicate sequences. Default = False
 -c, --consensusthreshold  |Removes sequences with higher gap to sequence ratio. Default = 0.2
 --primers                 |Known primers for visualisation in the final alignment in multifasta format.
