@@ -2,13 +2,28 @@
 Pipeline to identify ideal consensus regions for primer design.
 
 ## Installation & Dependencies
-python3.8
+Python3.8 in miniconda.
+https://docs.conda.io/en/latest/miniconda.html
 
-pandas
+Install MAFFT, Primer3 and ClustalX (optional for alignment visualzation)
+```bash
+sudo apt-get update -y
+sudo apt-get install -y mafft
+sudo apt-get install -y primer3
+sudo apt-get install -y clustalx
+```
 
-mafft
+Create and activate new Python environment for ConsensusPrime
+```bash
+conda create -n consensus_prime
+source activate consensus_prime
+```
+Install pandas
+```bash
+conda install pandas
+```
 
-primer3
+
 
 clustalx (or another alignment visualisation programm)
 
