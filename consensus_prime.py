@@ -3,7 +3,7 @@
 """
 Created on Fri Jan 15 09:20:45 2021
 
-@author: le86qiz
+@author: Maximilian Collatz
 """
 
 
@@ -27,8 +27,9 @@ def str2bool(v):
 parser = argparse.ArgumentParser()
 parser.add_argument("-i","--infile", type=str, help="Input nucletide alignment .fna.")
 parser.add_argument("-o", "--outdir", type=str, help="Name of the output directory.", default='')
-parser.add_argument("-d", "--delim", type=str, help="Column delimiter of the fasta header. Default '\t'",default='\t')
-parser.add_argument("-p", "--position", type=int, help="Position of geneID in fasta header. Default = 0", default=0)
+# parser.add_argument("-d", "--delim", type=str, help="Column delimiter of the fasta header. Default '\t'",default='\t')
+# parser.add_argument("-p", "--position", type=int, help="Position of geneID in fasta header. Default = 0", default=0)
+parser.add_argument("-t", "--threads", type=str, help="Number of threads used by MAFFT. Default = -1 (all)", default=-1)
 parser.add_argument("-k", "--keepduplicates", type=str2bool, help="Keep duplicate sequences. Default = False", default=False)
 parser.add_argument("-c", "--consensusthreshold", type=float, help="Consensus threshold bitween 0 and 1 with 1 beeing a perfect consensus. Default = 0.95", default=0.95)
 parser.add_argument("-g", "--gapthreshold", type=float, help="Percentage of gaps in sequences to be considered as partial sequence for removal. Default = 0.2", default=0.2)
@@ -37,8 +38,10 @@ parser.add_argument("--primers", type=str, help="Known primers for visualization
 parser.add_argument("--negativesequences", type=str, help="File with sequences that get their consensus sequence added to the final alignment .fna.", default='')
 args = parser.parse_args()
 
-delim = args.delim
-idpos = args.position
+# delim = args.delim
+delim = '\t'
+# idpos = args.position
+idpos = 0
 alignment = args.infile
 threshold = args.consensusthreshold
 gapthreshold = args.gapthreshold
@@ -46,7 +49,7 @@ keepduplicates = args.keepduplicates
 primer3file = args.primer3
 primers = args.primers
 negativesequencefile = args.negativesequences
-
+threads = str(args.threads)
 
 if args.outdir:
 	outdir = args.outdir
@@ -104,7 +107,7 @@ def insert_newlines(string, linelen=64): # linelen= 64 is recommended for a well
 # function to build mafft alignments
 def align(infile,outfile):
     with open(outfile, 'w') as outfile:
-        subprocess.call(['mafft','--auto' , '--adjustdirection', '--thread', '-1', infile], stdout=outfile, stderr=subprocess.DEVNULL)
+        subprocess.call(['mafft','--auto' , '--adjustdirection', '--thread', threads, infile], stdout=outfile, stderr=subprocess.DEVNULL)
 
 # reverse complement
 def revcomp(seq):
@@ -392,9 +395,9 @@ with open(f'{outdir}/primer3_results/consensus_threshold_{threshold}.txt') as in
 
 # print message if no primers could be predicted for current parameters and input sequences
 if not primer_dict:
-    print('########################################################\n### No Primers found for current parameter settings. ###\n########################################################')
-    print('\nDone.')
-    exit()
+    print('\n########################################################\n### No Primers found for current parameter settings. ###\n########################################################\n')
+#    print('\nDone.')
+#    exit()
 
 
 
@@ -457,15 +460,16 @@ if negativesequencefile:
 # the further alignment writing steps are necessary to guarantee proper alignments with short (primers) and longer sequences 
 
 # write predicted and provided primers to fasta file for alignment with mafft
-outfile = f'{outdir}/primer_fasta.fna'
-with open(outfile, 'w') as outfile:
-    for primer in primer_dict:
-        outfile.write(f'>{primer}\n')
-        outfile.write(f'{primer_dict[primer]}\n')
-    if primers:
-        for primer in known_primers:
+if primer_dict:
+    outfile = f'{outdir}/primer_fasta.fna'
+    with open(outfile, 'w') as outfile:
+        for primer in primer_dict:
             outfile.write(f'>{primer}\n')
-            outfile.write(f'{known_primers[primer]}\n')
+            outfile.write(f'{primer_dict[primer]}\n')
+        if primers:
+            for primer in known_primers:
+                outfile.write(f'>{primer}\n')
+                outfile.write(f'{known_primers[primer]}\n')
 
 #write output fasta with consensus regions for the mafft alignment
 outfile = f'{outdir}/consensusregions_fasta.fna'
@@ -498,16 +502,18 @@ with open(outfile, 'w') as outfile:
 
 
 # build final alignment in several steps with different parameters with all sequences
-print(f'\nBuilding and writing final_alignment to: {outdir}/final_alignment.fna\n')
+if primer_dict:
+    print(f'\nBuilding and writing final_alignment to: {outdir}/final_alignment.fna\n')
 # add consensus and negative consensus
 with open(f'{outdir}/consensus_alignment.fna', 'w') as outfile:
-    subprocess.call(['mafft','--auto', '--thread', '-1',  '--add', f'{outdir}/consensussequences_fasta.fna', f'{outdir}/{unique}nopartial_alignment.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
+    subprocess.call(['mafft','--auto', '--thread', threads,  '--add', f'{outdir}/consensussequences_fasta.fna', f'{outdir}/{unique}nopartial_alignment.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
 # add consensusregions
 with open(f'{outdir}/consensusregions_alignment.fna', 'w') as outfile:
-    subprocess.call(['mafft','--6merpair', '--thread', '-1',  '--addfragments', f'{outdir}/consensusregions_fasta.fna', f'{outdir}/consensus_alignment.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
+    subprocess.call(['mafft','--6merpair', '--thread', threads,  '--addfragments', f'{outdir}/consensusregions_fasta.fna', f'{outdir}/consensus_alignment.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
 # add primers
-with open(f'{outdir}/final_alignment.fna', 'w') as outfile:
-    subprocess.call(['mafft','--6merpair', '--thread', '-1', '--adjustdirection',  '--addfragments', f'{outdir}/primer_fasta.fna', f'{outdir}/consensusregions_alignment.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
+if primer_dict:
+    with open(f'{outdir}/final_alignment.fna', 'w') as outfile:
+        subprocess.call(['mafft','--6merpair', '--thread', threads, '--adjustdirection',  '--addfragments', f'{outdir}/primer_fasta.fna', f'{outdir}/consensusregions_alignment.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
 
 # make HTML output from primer3 result file
 html_file = f'{outdir}/primer3_summary.html'
@@ -592,9 +598,10 @@ with open(html_file, 'w') as outfile:
     outfile.write(to_html_table(summary_table, header=['Parameter','Value']))
     outfile.write('<br><hr><br>\n')
     outfile.write('<h2 id="primers">Primers</h2>\n')
-    for primerID in primer_resulttables:
-        outfile.write(f'<h3>Primer {str(primerID)}</h3>\n')
-        outfile.write(to_html_table(primer_resulttables[primerID], header=['Parameter','Value']))
+    if primer_dict:
+        for primerID in primer_resulttables:
+            outfile.write(f'<h3>Primer {str(primerID)}</h3>\n')
+            outfile.write(to_html_table(primer_resulttables[primerID], header=['Parameter','Value']))
     outfile.write('\n</html>\n</body>\n')
 
 
