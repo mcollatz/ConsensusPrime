@@ -2,8 +2,7 @@
 Pipeline to identify ideal consensus regions for primer design.
 
 ## Installation & Dependencies
-Python3.8 in miniconda.
-https://docs.conda.io/en/latest/miniconda.html
+Install Python3.8 in miniconda. https://docs.conda.io/en/latest/miniconda.html
 
 Install MAFFT, Primer3 and ClustalX (optional for alignment visualzation)
 ```bash
