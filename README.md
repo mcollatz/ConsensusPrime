@@ -25,8 +25,6 @@ conda install pandas
 
 
 
-clustalx (or another alignment visualisation programm)
-
 ## Usage
 **Example**
 
@@ -48,7 +46,7 @@ command | what it does
 --negativesequences       |File with sequences that get their consensus sequence added to the final alignment in multifasta format.
 -h, --help                |show this message and exit
 
-Note: Mafft will uses all available cores in this pipeline.
+
 
 ## We also provide a Docker image for ConsensusPrime
 Simply pull and run a ready-to-use image from Dockerhub:
