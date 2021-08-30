@@ -1,5 +1,5 @@
 # ConsensusPrime
-Pipeline to identify ideal consensus regions for primer design.
+Pipeline to identify ideal consensus regions from homologue sequences for primer design.
 
 ## Installation & Dependencies
 Install Python3.8 in miniconda. https://docs.conda.io/en/latest/miniconda.html
