@@ -15,7 +15,7 @@ sudo apt-get install -y clustalx
 Create and activate new Python environment for ConsensusPrime
 ```bash
 conda create -n consensus_prime
-source activate consensus_prime
+conda activate consensus_prime
 ```
 Install pandas
 ```bash
