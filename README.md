@@ -26,10 +26,6 @@ Install pandas
 conda install pandas
 ```
 
-Exit the conda environment when you are done
-```bash
-conda deactivate
-```
 
 ## Usage
 **Example**
@@ -53,6 +49,10 @@ command | what it does
 -h, --help                |show this message and exit
 
 
+Exit the conda environment when you are done
+```bash
+conda deactivate
+```
 
 ## We also provide a Docker image for ConsensusPrime
 Simply pull and run a ready-to-use image from Dockerhub:
