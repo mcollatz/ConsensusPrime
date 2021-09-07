@@ -26,7 +26,10 @@ Install pandas
 conda install pandas
 ```
 
-
+Exit the conda environment when you are done
+```bash
+conda deactivate
+```
 
 ## Usage
 **Example**
