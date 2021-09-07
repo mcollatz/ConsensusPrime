@@ -4,6 +4,8 @@ Pipeline to identify ideal consensus regions from homologue sequences for primer
 ## Installation & Dependencies
 Install Python3.8 in miniconda. https://docs.conda.io/en/latest/miniconda.html
 
+Download consensus_prime.py from GitHub.
+
 Install MAFFT, Primer3 and ClustalX (optional for alignment visualzation)
 ```bash
 sudo apt-get update -y
