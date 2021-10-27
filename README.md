@@ -43,7 +43,8 @@ command | what it does
 -o, --outdir              |Specifies output directory. Default = .
 -t, --threads             |Number of threads used by MAFFT. Default = -1 (all)
 -k, --keepduplicates      |Keep duplicate sequences. Default = False
--c, --consensusthreshold  |Removes sequences with higher gap to sequence ratio. Default = 0.2
+-c, --consensusthreshold  |Consensus threshold bitween 0 and 1 with 1 beeing a perfect consensus. Default = 0.95
+-g, --gapthreshold        |Removes sequences with higher gap to sequence ratio. Default = 0.2
 --primers                 |Known primers for visualisation in the final alignment in multifasta format.
 --negativesequences       |File with sequences that get their consensus sequence added to the final alignment in multifasta format.
 -h, --help                |show this message and exit
