@@ -93,5 +93,7 @@ mcollatz/consensusprime:1.0 \
 
 ## Results
 
-The results are stored in the specified /out directory or in the current directory under "/results". The intermediate results of the individual filter steps are also located in this directory. The predicted primers are listed in the "consensus_prime_summary.html" with all related details. The predicted primers can be viewed in "final_alignment.fna" using an alignment visualization program such as ClustalX. For an example output check the example_results.zip.
+The results are stored in the specified /out directory or in the current directory under "/results". The intermediate results of the individual filter steps are also located in this directory. The predicted primers are listed in the "consensus_prime_summary.html" with all related details. The predicted primers can be viewed in "final_alignment.fna" using an alignment visualization program such as ClustalX.
+
+For an example output check the example_results.zip.
 
