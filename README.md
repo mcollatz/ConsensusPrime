@@ -1,6 +1,12 @@
 # ConsensusPrime
 Pipeline to identify ideal consensus regions from homologue sequences for primer design.
 
+## System Requirements
+
+The pipeline is developed and testet for Linux (20.04).
+
+On the hardware side, the alignments with mafft are the bottleneck. The length and number of sequences play a decisive role. Alignments with a few hundred sequences of moderate length can be calculated in a few seconds to minutes even on simple laptops.
+
 ## Installation & Dependencies
 Install Python3.8 in miniconda. https://docs.conda.io/en/latest/miniconda.html
 
