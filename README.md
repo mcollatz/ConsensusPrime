@@ -13,6 +13,8 @@ Primer3 | 2.5.0
 
 On the hardware side, the alignments with mafft are the bottleneck. The length and number of sequences play a decisive role. Alignments with a few hundred sequences of moderate length can be calculated in a few seconds to minutes even on simple laptops. Larger alignments require a system with more RAM.
 
+The duration of the installation is a few minutes and depends among other things on whether various requirements are already installed, such as conda.
+
 The processing time of the sample dataset is about 15 sec on a laptop with Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz and 16 GB RAM.
 
 ## Installation & Dependencies
@@ -42,10 +44,10 @@ conda install pandas
 
 
 ## Usage
-**Example**
 
+Download the example_data.fna and primer3_parameters.txt then run the following command (remember to adjust the file paths accordingly).
 ```bash
-python3.8 /path_to/consensus_prime.py -infile /path_to/multifasta.fna --primer3 /path_to/primer3_parameters.txt
+python3.8 /path_to/consensus_prime.py -infile /path_to/example_data.fna --primer3 /path_to/primer3_parameters.txt
 ```
 
 **Options:**
@@ -78,10 +80,13 @@ docker run mcollatz/consensusprime:1.0
 ```
 
 **Example**
+
+Download the example_data.fna and primer3_parameters.txt then run the following command (remember to adjust the file paths accordingly).
+
 ```bash
 docker run -t --rm -v /path/to/dir/with/your/input/files/:/in \
 -v /path/to/dir/for/results/:/out \
 -u `id -u $USER`:`id -g $USER` \
 mcollatz/consensusprime:1.0 \
-/consensus_prime.py --infile /in/multifasta.fas --primer3 /in/primer3_parameters.txt --outdir /out
+/consensus_prime.py --infile /in/example_data.fna --primer3 /in/primer3_parameters.txt --outdir /out
 ```
