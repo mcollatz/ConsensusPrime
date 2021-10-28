@@ -4,9 +4,12 @@ Pipeline to identify ideal consensus regions from homologue sequences for primer
 ## System Requirements
 
 The pipeline is developed and testet for:
-Linux 20.04
-Mafft 7.453
-Primer3 2.5.0
+
+Software | Version
+  ------------- | -------------
+Linux   | 20.04
+Mafft   | 7.453
+Primer3 | 2.5.0
 
 On the hardware side, the alignments with mafft are the bottleneck. The length and number of sequences play a decisive role. Alignments with a few hundred sequences of moderate length can be calculated in a few seconds to minutes even on simple laptops. Larger alignments require a system with more RAM.
 
