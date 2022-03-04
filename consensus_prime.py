@@ -38,6 +38,7 @@ parser.add_argument("--primers", type=str, help="Known primers for visualization
 parser.add_argument("--negativesequences", type=str, help="File with sequences that get their consensus sequence added to the final alignment .fna.", default='')
 args = parser.parse_args()
 
+# splitting the fasta header is not really needed
 # delim = args.delim
 delim = '\t'
 # idpos = args.position
@@ -107,7 +108,7 @@ def insert_newlines(string, linelen=64): # linelen= 64 is recommended for a well
 # function to build mafft alignments
 def align(infile,outfile):
     with open(outfile, 'w') as outfile:
-        subprocess.call(['mafft','--auto' , '--adjustdirection', '--thread', threads, infile], stdout=outfile, stderr=subprocess.DEVNULL)
+        subprocess.call(['mafft','--auto' , '--adjustdirection', '--reorder', '--thread', threads, infile], stdout=outfile, stderr=subprocess.DEVNULL)
 
 # reverse complement
 def revcomp(seq):
@@ -161,25 +162,28 @@ if not keepduplicates:
     unique = 'unique_'
     outfile = f'{outdir}/unique_fasta.fna'
     sequences = set()
-    for header in fasta:
-        fasta[header] = fasta[header].replace("-","")
-        sequences.add(fasta[header])
-    if len(sequences) > 1:
-        sequences = set()
-        with open(outfile,'w') as outfile:
-            for header in fasta:
-                if not fasta[header] in sequences:
-                    outfile.write(f'>{header}\n')
-                    outfile.write(f'{insert_newlines(fasta[header])}\n')
-                    sequences.add(fasta[header])
+    number_of_uniques = 0
+    with open(outfile,'w') as outfile:
+        for header in fasta:
+            seqeuence_gapless = fasta[header].replace("-","")
+            if not seqeuence_gapless in sequences:
+                outfile.write(f'>{header}\n')
+                outfile.write(f'{insert_newlines(fasta[header])}\n')
+                sequences.add(seqeuence_gapless)
+                number_of_uniques += 1
     print(f'Building and writing unique alignment to: {outdir}/unique_alignment.fna\n')
-    align(infile=f'{outdir}/unique_fasta.fna', outfile=f'{outdir}/unique_alignment.fna')
-
+    if number_of_uniques > 1:
+        align(infile=f'{outdir}/unique_fasta.fna', outfile=f'{outdir}/unique_alignment.fna')
+    else:
+        command = f'cp {outdir}/unique_fasta.fna {outdir}/unique_alignment.fna'
+        os.system(command)
+    
     # read unique_alignment fasta
     fasta, fastaheader = read_fasta(f'{outdir}/unique_alignment.fna', delim, idpos)
     number_of_sequences = len(fasta)
     alignment_statistic_table.append(['Unique sequences', number_of_sequences])
     print(f'Number of unique sequences: {number_of_sequences}')
+
 
 
 
@@ -384,6 +388,9 @@ with open(f'{outdir}/primer3_results/consensus_threshold_{threshold}.txt') as in
                 primer_dict[line1[0]] = revcomp(line1[1])
             else:
                 primer_dict[line1[0]] = line1[1]
+        # read for command line output
+        if re.match('^PRIMER_.*_EXPLAIN=',line):
+            print('\t'.join(line.strip().split('=')))
         # read info for html output
         line = line.strip().split('=')
         param = line[0]
@@ -516,7 +523,7 @@ if primer_dict:
         subprocess.call(['mafft','--6merpair', '--thread', threads, '--adjustdirection',  '--addfragments', f'{outdir}/primer_fasta.fna', f'{outdir}/consensusregions_alignment.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
 
 # make HTML output from primer3 result file
-html_file = f'{outdir}/primer3_summary.html'
+html_file = f'{outdir}/consensus_prime_summary.html'
 with open(html_file, 'w') as outfile:
     primercount = 0
     summary_table = []
