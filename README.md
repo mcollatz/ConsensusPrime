@@ -1,5 +1,5 @@
 # ConsensusPrime
-Pipeline to identify ideal consensus regions from homologue sequences for primer design.
+Pipeline for filtering and cleaning of multiple sequence alignments to identify ideal consensus regions from homologue sequences for primer design.
 
 ## System Requirements
 
