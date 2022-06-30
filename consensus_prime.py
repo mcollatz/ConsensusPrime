@@ -31,8 +31,9 @@ parser.add_argument("-o", "--outdir", type=str, help="Name of the output directo
 # parser.add_argument("-p", "--position", type=int, help="Position of geneID in fasta header. Default = 0", default=0)
 parser.add_argument("-t", "--threads", type=str, help="Number of threads used by MAFFT. Default = -1 (all)", default=-1)
 parser.add_argument("-k", "--keepduplicates", type=str2bool, help="Keep duplicate sequences. Default = False", default=False)
-parser.add_argument("-c", "--consensusthreshold", type=float, help="Consensus threshold bitween 0 and 1 with 1 beeing a perfect consensus. Default = 0.95", default=0.95)
-parser.add_argument("-g", "--gapthreshold", type=float, help="Percentage of gaps in sequences to be considered as partial sequence for removal. Default = 0.2", default=0.2)
+parser.add_argument("-c", "--consensusthreshold", type=float, help="Consensus threshold bitween 0 and 1 with 1 beeing a perfect consensus for regions to be considered for primer prediction in the final alignment. Default = 0.95", default=0.95)
+#parser.add_argument("-g", "--gapthreshold", type=float, help="Percentage of gaps in sequences to be considered as partial sequence for removal. Default = 0.2", default=0.2)
+parser.add_argument("-s", "--consensussimilarity", type=float, help="Minimum similarity threshold for sequences in the input alignment when comparing each sequence to the consensus sequence. Default = 0.8", default=0.8)
 parser.add_argument("-x", "--primer3", type=str, help="Primer3 input parameter file.")
 parser.add_argument("--primers", type=str, help="Known primers for visualization in primer plot in .fasta format.", default="")
 parser.add_argument("--negativesequences", type=str, help="File with sequences that get their consensus sequence added to the final alignment .fna.", default='')
@@ -45,7 +46,8 @@ delim = '\t'
 idpos = 0
 alignment = args.infile
 threshold = args.consensusthreshold
-gapthreshold = args.gapthreshold
+#gapthreshold = args.gapthreshold
+consensussimilarity = args.consensussimilarity
 keepduplicates = args.keepduplicates
 primer3file = args.primer3
 primers = args.primers
@@ -126,7 +128,11 @@ def to_html_table(table,header=[]):
     html_table += '</table>\n'
     return(html_table)
 
-
+# returns the percentage similarity of two sequency as value betwenn 0 and 1
+def compare_similarity(seq1, seq2):
+    seqlen = len(seq1)
+    mismatch_count = len([pos for pos in range(seqlen) if seq1[pos] != seq2[pos] ])
+    return(1 - mismatch_count/seqlen)
 
 
 # create table for Number of Sequences
@@ -185,36 +191,66 @@ if not keepduplicates:
     print(f'Number of unique sequences: {number_of_sequences}')
 
 
+####### filter by consensussimilarity #######
 
+# convert fasta to panda dataframe to calculate consensus scores
+fasta_for_panda = {}
+for gene in fasta:
+    fasta_for_panda[gene] = list(fasta[gene])
+fasta_pd = pd.DataFrame.from_dict(fasta_for_panda, orient='index')
+# calculate nucleotide ratio for every position in the alighment
+# NOTE: non-standard nucleotides are counted as '-'
+consensus_dict = {}
+for col in fasta_pd:
+    nucl_score = {'A':0,'T':0,'C':0,'G':0,'-':0}
+    for nt in fasta_pd[col]:
+        if nt in nucl_score:
+            nucl_score[nt] += 1
+        else:
+            nucl_score['-'] += 1
+    for key in nucl_score:
+        nucl_score[key] = nucl_score[key] / number_of_sequences
+    consensus_dict[col] = nucl_score
 
-# remove partial sequences
-# partial sequences contain more than the defined % threshold of gaps
-# might need to be adjusted if the alignment contains a sequence that is much longer than all others for example
-tempfasta = dict(fasta)
-for header in tempfasta:
-    seqlen = len(fasta[header])
-    gaps = fasta[header].count('-')
-    if gaps / seqlen > gapthreshold:
-        del fasta[header]
+# get consensus sequence
+# The score is the proportion of the most common amino acid in a column of the alignment.
+consensus_seq = ''
+consensus_score = []
+for pos in consensus_dict:
+    consensus_nt = ''
+    max_consensus_score = 0
+    for nt in consensus_dict[pos]:
+        score = consensus_dict[pos][nt]
+        if score > max_consensus_score:
+            consensus_nt = nt
+            max_consensus_score = score
+    consensus_seq += consensus_nt
+    consensus_score.append(max_consensus_score)
+    max_consensus_score = 0
 
-outfile = f'{outdir}/{unique}nopartial_fasta.fna'
+# filter unsimilar sequences
+similarity_filtered_dict = {}
+for header, sequence in fasta.items():
+    if compare_similarity(sequence, consensus_seq) >= consensussimilarity:
+        similarity_filtered_dict[header] = sequence
+
+outfile = f'{outdir}/{unique}similarity_filtered_fasta.fna'
 with open(outfile,'w') as outfile:
-    for header in fasta:
+    for header in similarity_filtered_dict:
         outfile.write(f'>{header}\n')
-        outfile.write(f'{insert_newlines(fasta[header])}\n')
+        outfile.write(f'{insert_newlines(similarity_filtered_dict[header])}\n')
+# build new alignment without unsimilar sequences
+print(f'Building and writing similarity filtered alignment to: {outdir}/{unique}similarity_filtered_alignment.fna\n')
+align(infile=f'{outdir}/{unique}similarity_filtered_fasta.fna', outfile=f'{outdir}/{unique}similarity_filtered_alignment.fna')
 
-# build new alignment without partial sequences
-print(f'Building and writing nonpartial alignment to: {outdir}/{unique}nopartial_alignment.fna\n')
-align(infile=f'{outdir}/{unique}nopartial_fasta.fna', outfile=f'{outdir}/{unique}nopartial_alignment.fna')
-
-# read unique_nonpartial_alignment fasta
-fasta, fastaheader = read_fasta(f'{outdir}/{unique}nopartial_fasta.fna', delim, idpos)
+# read similarity_filtered_alignment fasta
+fasta, fastaheader = read_fasta(f'{outdir}/{unique}similarity_filtered_alignment.fna', delim, idpos)
 number_of_sequences = len(fasta)
-print(f'Number of {unique}nopartial sequences: {number_of_sequences}\n')
+print(f'Number of {unique}similar sequences: {number_of_sequences}\n')
 if keepduplicates:
-    alignment_statistic_table.append(['Non-partial sequences', number_of_sequences])
+    alignment_statistic_table.append(['Similar sequences', number_of_sequences])
 else:
-    alignment_statistic_table.append(['Unique-non-partial sequences', number_of_sequences])
+    alignment_statistic_table.append(['Unique similar sequences', number_of_sequences])
 
 
 # convert fasta to panda dataframe to calculate consensus scores
@@ -252,6 +288,8 @@ for pos in consensus_dict:
     consensus_seq += consensus_nt
     consensus_score.append(max_consensus_score)
     max_consensus_score = 0
+
+
 
 # remove gaps from the consensus sequence as primers can not be designed with gaps
 gap_positions = []
@@ -513,7 +551,7 @@ if primer_dict:
     print(f'\nBuilding and writing final_alignment to: {outdir}/final_alignment.fna\n')
 # add consensus and negative consensus
 with open(f'{outdir}/consensus_alignment.fna', 'w') as outfile:
-    subprocess.call(['mafft','--auto', '--thread', threads,  '--add', f'{outdir}/consensussequences_fasta.fna', f'{outdir}/{unique}nopartial_alignment.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
+    subprocess.call(['mafft','--auto', '--thread', threads,  '--add', f'{outdir}/consensussequences_fasta.fna', f'{outdir}/{unique}similarity_filtered_alignment.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
 # add consensusregions
 with open(f'{outdir}/consensusregions_alignment.fna', 'w') as outfile:
     subprocess.call(['mafft','--6merpair', '--thread', threads,  '--addfragments', f'{outdir}/consensusregions_fasta.fna', f'{outdir}/consensus_alignment.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
@@ -554,8 +592,8 @@ with open(html_file, 'w') as outfile:
         ['Input fasta',alignment],
         ['Output directory',outdir],
         ['Keep Duplicate sequences', str(keepduplicates)],
-        ['Consensus Threshold', str(threshold)],
-        ['Gap Threshold (Remove sequences with higher gap ratio)', str(gapthreshold)]
+        ['Consensus Similarity Threshold', str(consensussimilarity)],
+        ['Consensus Threshold for Primerdesign', str(threshold)]
         ]
     if primer3file:
         consensusparametertable.append(['Primer3 parameter File',primer3file])
@@ -609,6 +647,8 @@ with open(html_file, 'w') as outfile:
         for primerID in primer_resulttables:
             outfile.write(f'<h3>Primer {str(primerID)}</h3>\n')
             outfile.write(to_html_table(primer_resulttables[primerID], header=['Parameter','Value']))
+    else:
+        outfile.write('No Primers Detected.')
     outfile.write('\n</html>\n</body>\n')
 
 
