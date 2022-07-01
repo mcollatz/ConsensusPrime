@@ -1,0 +1,492 @@
+<html>
+<head>
+<style>
+h1, h2, body { font-family: sans-serif;}
+pre { font-size: 140%;}
+table{ font-family: sans-serif; border-collapse: collapse;}
+td { border: 1px solid #909090; text-align: left; padding: 8px; }
+th { border: 1px solid #909090; text-align: center; padding: 8px; }
+tr:nth-child(even) { background-color: #dddddd; }
+</style>
+</head>
+<body>
+<title>ConsensusPrime Report</title>
+<h1>ConsensusPrime Report</h1>
+<br><hr><br>
+<h2>Content</h2>
+<ul>
+<li><a href="#userparams">User Defined Parameters</a></li>
+<li><a href="#command">Run Command</a></li>
+<li><a href="#alignment">Number of Sequences</a></li>
+<li><a href="#finalalignment">Final Alignment</a></li>
+<li><a href="#primer3param">Primer3 Parameter Summary</a></li>
+<li><a href="#primers">Primers</a></li>
+</ul>
+<br><hr><br>
+<h2 id="userparams">User Defined Parameters</h2>
+<table border=1>
+<tr><th>Parameter</td><th>Value</th></tr>
+<tr><td>Input fasta</td><td>mecC_stefan.fas</td></tr>
+<tr><td>Output directory</td><td>results</td></tr>
+<tr><td>Keep Duplicate sequences</td><td>False</td></tr>
+<tr><td>Consensus Similarity Threshold</td><td>0.8</td></tr>
+<tr><td>Consensus Threshold for Primerdesign</td><td>0.85</td></tr>
+<tr><td>Primer3 parameter File</td><td>primer3_parameters.txt</td></tr>
+</table>
+<br><hr><br>
+<h2 id="command">Run Command</h2>
+consensus_prime.py -i mecC_stefan.fas -x primer3_parameters.txt --consensusthreshold 0.85
+<br><hr><br>
+<h2 id="alignment">Number of Sequences</h2>
+<table border=1>
+<tr><th>Fasta/Alignment</td><th>Number of Sequences</th></tr>
+<tr><td>Input sequences</td><td>29</td></tr>
+<tr><td>Unique sequences</td><td>9</td></tr>
+<tr><td>Unique similar sequences</td><td>7</td></tr>
+</table>
+<br><hr><br>
+<h2 id="finalalignment">Final Alignment</h2>
+results/final_alignment.fna<br><hr><br><h2 id="primer3param">Primer3 Parameter Summary</h2>
+<table border=1>
+<tr><th>Parameter</td><th>Value</th></tr>
+<tr><td>SEQUENCE_ID</td><td>consensus_sequence</td></tr>
+<tr><td>SEQUENCE_TEMPLATE</td><td><pre>ATGAAAAAAATTTATATTAGTGTTCTAGTTCTTTTACTAATTATGATTATAATAACTTGGTTATTCAAAGATGACGATATTGAGAAAACAATTAGTTCTA
+TTGAAAAAGGAAACTATAACGAAGTATATAAAAATAGTTCAGAAAAATCTAAACTGGCATATGGAGAAGAAGAAATTATAGATAGGAATAAAAAAATTTA
+CAAAGATTTAAGTGTCAATAACTTAAAAATTACTAATCATAAAATTAAAAAAACTGGAAAAGATAAAAAGCAGGTTGATGTTAAATATAACATATATACA
+AAATATGGAACTATACGACGTAATACACAATTAAACTTTATTTATGAAGATAAGCATTGGAAATTAGATTGGAGACCAGACGTAATAGTACCTGGTTTGA
+AAAATGGACAGAAAATTAATATAGAAACATTAAAATCAGAGCGAGGCAAAATAAAAGATAGAAATGGTATAGAATTAGCTAAAACTGGAAATACATATGA
+AATCGGTATTGTCCCTAACAAAACACCCGAAGAAAAATATGATGATATTGCTCGTGACTTACAAATTGATACAAAAGCTATAACCAATAAAGTTAATCAA
+AAATGGGTTCAGCCAGATTCATTTGTACCAATTAAAAAGATAAATAAACAAGATGAATCTATAGACAAATTAATTAAATCATACAATTTACAAATAAACA
+CTATAAAAAGCCGTGTTTATCCATTGAACGAAGCAACAGTACACCTTTTAGGTTATGTGGGTCCAATTAATTCTGACGAGTTAAAAAGTAAGCAATTTAG
+AAACTATAGCAAAAATACTGTTATTGGAAAAAAGGGCTTAGAACGCCTCTATGATAAACAATTGCAAAACACTGATGGTTTTAAGGTATCCATTGCAAAT
+ACTTATGACAATAAACCTTTAGACACATTATTGGAGAAAAAGGCTGAAAACGGAAAAGATCTTCATTTAACTATAGATGCTAGAGTACAAGAAAGTATTT
+ATAAACATATGAAAAATGACGATGGATCTGGTACAGCATTACAACCAAAAACTGGAGAAATTTTAGCTTTGGTAAGTACCCCATCGTACGATGTTTATCC
+ATTCATGAATGGATTAAGCAATAATGACTACCGTAAATTAACTAACAATAAAAAAGAGCCTTTGCTCAACAAATTTCAAATCACTACATCACCAGGTTCA
+ACCCAAAAAATATTAACATCTATTATAGCCTTAAAAGAAAATAAACTAGACAAAAATACTAATTTTGATATTTATGGTAAGGGTTGGCAAAAAGATGCAT
+CATGGGGGAATTATAATATCACAAGATTTAAAGTAGTAGACGGCAATATCGATTTAAAGCAAGCAATAGAATCATCAGACAACATATTTTTTGCCCGCAT
+TGCATTAGCATTAGGAGCCAAAAAATTTGAGCAAGGTATGCAAGATTTGGGAATCGGTGAAAATATCCCGAGTGATTATCCCTTTTATAAAGCACAAATC
+TCAAATAGTAATTTAAAAAATGAAATATTATTAGCAGATTCAGGATATGGCCAAGGCGAGATACTAGTAAACCCTATACAAATTTTATCAATATACAGTG
+CTTTAGAAAATAACGGAAATATACAAAATCCTCATGTTTTACGTAAAACAAAATCTCAAATATGGAAAAAAGATATTATACCTAAAAAAGACATAGATAT
+ATTAACTAATGGTATGGAACGTGTAGTTAATAAAACACATAGGGATGATATATACAAAAATTATGCCCGAATTATTGGTAAATCTGGCACAGCAGAATTA
+AAAATGAATCAAGGGGAAACTGGAAGACAAATAGGTTGGTTTGTTTCATATAATAAAAATAATCCTAATATGTTAATGGCGATTAATGTTAAAGACGTTC
+AAAATAAAGGGATGGCCAGCTATAATGCTACTATATCTGGAAAAGTTTATGATGATTTGTATGATAATGGAAAAACTCAATTTGATATAGATCAGTAA</pre></td></tr>
+<tr><td>SEQUENCE_EXCLUDED_REGION</td><td>23,45 94,18 155,23 240,1 272,1 310,1 484,1 528,1 608,1 648,11 698,1 728,72 833,1 883,2 908,1 932,34 1020,1 1088,1 1113,1 1153,1 1281,1 1307,2 1338,1 1379,1 1418,1 1628,1 1680,1 1775,1 1887,1 1910,22 1958,40</td></tr>
+<tr><td>SEQUENCE_INTERNAL_EXCLUDED_REGION</td><td>23,45 94,18 155,23 240,1 272,1 310,1 484,1 528,1 608,1 648,11 698,1 728,72 833,1 883,2 908,1 932,34 1020,1 1088,1 1113,1 1153,1 1281,1 1307,2 1338,1 1379,1 1418,1 1628,1 1680,1 1775,1 1887,1 1910,22 1958,40</td></tr>
+<tr><td>PRIMER_TASK</td><td>generic</td></tr>
+<tr><td>PRIMER_PICK_LEFT_PRIMER</td><td>1</td></tr>
+<tr><td>PRIMER_PICK_INTERNAL_OLIGO</td><td>1</td></tr>
+<tr><td>PRIMER_PICK_RIGHT_PRIMER</td><td>1</td></tr>
+<tr><td>PRIMER_OPT_SIZE</td><td>20</td></tr>
+<tr><td>PRIMER_MIN_SIZE</td><td>15</td></tr>
+<tr><td>PRIMER_MAX_SIZE</td><td>25</td></tr>
+<tr><td>PRIMER_OPT_TM</td><td>54</td></tr>
+<tr><td>PRIMER_MIN_TM</td><td>52</td></tr>
+<tr><td>PRIMER_MAX_TM</td><td>56</td></tr>
+<tr><td>PRIMER_INTERNAL_OPT_SIZE</td><td>30</td></tr>
+<tr><td>PRIMER_INTERNAL_MIN_SIZE</td><td>25</td></tr>
+<tr><td>PRIMER_INTERNAL_MAX_SIZE</td><td>35</td></tr>
+<tr><td>PRIMER_INTERNAL_OPT_TM</td><td>64</td></tr>
+<tr><td>PRIMER_INTERNAL_MIN_TM</td><td>60</td></tr>
+<tr><td>PRIMER_INTERNAL_MAX_TM</td><td>68</td></tr>
+<tr><td>PRIMER_PRODUCT_SIZE_RANGE</td><td>40-100</td></tr>
+<tr><td>PRIMER_TM_FORMULA</td><td>1</td></tr>
+<tr><td>PRIMER_EXPLAIN_FLAG</td><td>1</td></tr>
+<tr><td>PRIMER_SECONDARY_STRUCTURE_ALIGNMENT</td><td>1</td></tr>
+<tr><td>PRIMER_THERMODYNAMIC_OLIGO_ALIGNMENT</td><td>1</td></tr>
+<tr><td>PRIMER_THERMODYNAMIC_TEMPLATE_ALIGNMENT</td><td>1</td></tr>
+<tr><td>PRIMER_NUM_RETURN</td><td>10</td></tr>
+<tr><td>PRIMER_MAX_HAIRPIN_TH</td><td>47.0</td></tr>
+<tr><td>PRIMER_INTERNAL_MAX_HAIRPIN_TH</td><td>47.0</td></tr>
+<tr><td>PRIMER_MAX_END_STABILITA</td><td>100.0</td></tr>
+<tr><td>PRIMER_LEFT_EXPLAIN</td><td>considered 12943, overlap excluded region 955, GC content failed 2870, low tm 6037, high tm 1229, high hairpin stability 140, long poly-x seq 78, ok 1634</td></tr>
+<tr><td>PRIMER_RIGHT_EXPLAIN</td><td>considered 12864, overlap excluded region 985, GC content failed 2777, low tm 6037, high tm 1229, high hairpin stability 58, long poly-x seq 62, ok 1716</td></tr>
+<tr><td>PRIMER_INTERNAL_EXPLAIN</td><td>considered 10120, overlap excluded region 1195, GC content failed 1702, low tm 6724, high hairpin stability 12, long poly-x seq 97, ok 390</td></tr>
+<tr><td>PRIMER_PAIR_EXPLAIN</td><td>considered 134495, unacceptable product size 130827, no internal oligo 3655, ok 13</td></tr>
+<tr><td>PRIMER_LEFT_NUM_RETURNED</td><td>10</td></tr>
+<tr><td>PRIMER_RIGHT_NUM_RETURNED</td><td>10</td></tr>
+<tr><td>PRIMER_INTERNAL_NUM_RETURNED</td><td>10</td></tr>
+<tr><td>PRIMER_PAIR_NUM_RETURNED</td><td>10</td></tr>
+</table>
+<br><hr><br>
+<h2 id="primers">Primers</h2>
+<h3>Primer 0</h3>
+<table border=1>
+<tr><th>Parameter</td><th>Value</th></tr>
+<tr><td>PRIMER_PAIR_0_PENALTY</td><td>2.471901</td></tr>
+<tr><td>PRIMER_LEFT_0_PENALTY</td><td>1.874520</td></tr>
+<tr><td>PRIMER_RIGHT_0_PENALTY</td><td>0.597380</td></tr>
+<tr><td>PRIMER_INTERNAL_0_PENALTY</td><td>8.629312</td></tr>
+<tr><td>PRIMER_LEFT_0_SEQUENCE_FWD (5'-3')</td><td>AGCATTGGAAATTAGATTGGA</td></tr>
+<tr><td>PRIMER_RIGHT_0_SEQUENCE_REV</td><td>ACATTAAAATCAGAGCGAGG</td></tr>
+<tr><td>PRIMER_RIGHT_0_SEQUENCE_REVCOMP (5'-3')</td><td>CCTCGCTCTGATTTTAATGT</td></tr>
+<tr><td>PRIMER_INTERNAL_0_SEQUENCE</td><td>ACCAGACGTAATAGTACCTGGTTTGAAAAATGGAC</td></tr>
+<tr><td>PRIMER_LEFT_0</td><td>352,21</td></tr>
+<tr><td>PRIMER_RIGHT_0</td><td>445,20</td></tr>
+<tr><td>PRIMER_INTERNAL_0</td><td>374,35</td></tr>
+<tr><td>PRIMER_LEFT_0_TM</td><td>53.125</td></tr>
+<tr><td>PRIMER_RIGHT_0_TM</td><td>53.403</td></tr>
+<tr><td>PRIMER_INTERNAL_0_TM</td><td>60.371</td></tr>
+<tr><td>PRIMER_LEFT_0_GC_PERCENT</td><td>33.333</td></tr>
+<tr><td>PRIMER_RIGHT_0_GC_PERCENT</td><td>40.000</td></tr>
+<tr><td>PRIMER_INTERNAL_0_GC_PERCENT</td><td>40.000</td></tr>
+<tr><td>PRIMER_INTERNAL_0_SELF_ANY_TH</td><td>13.29</td></tr>
+<tr><td>PRIMER_LEFT_0_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_0_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_0_SELF_ANY_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 13.3&deg;C  dG: -2787 cal/mol  dH: -101800 cal/mol  dS: -319 cal/mol*K<br>             5' ACCAGACGTAATAGTAC--CTGGTTTGAAAAATGGAC 3'<br>                |||||  ||| || |||  |||||<br>3' CAGGTAAAAAGTTTGGTC--CATGATAATGCAGACCA 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_INTERNAL_0_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_0_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_0_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_0_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_0_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_0_HAIRPIN_TH</td><td>37.57</td></tr>
+<tr><td>PRIMER_INTERNAL_0_HAIRPIN_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 37.6&deg;C  dG: -83 cal/mol  dH: -45100 cal/mol  dS: -145 cal/mol*K<br>           5' ACCAGACGTAAT&#x2510;<br>              |||||  |||  &#x2502;<br>3' CAGGTAAAAAGTTTGGTCCATGA&#x2518;<br></pre></p></td></tr>
+<tr><td>PRIMER_LEFT_0_END_STABILITY</td><td>3.5300</td></tr>
+<tr><td>PRIMER_RIGHT_0_END_STABILITY</td><td>2.7100</td></tr>
+<tr><td>PRIMER_PAIR_0_COMPL_ANY_TH</td><td>8.83</td></tr>
+<tr><td>PRIMER_PAIR_0_COMPL_ANY_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 8.8&deg;C  dG: -3135 cal/mol  dH: -80900 cal/mol  dS: -251 cal/mol*K<br>5' AGCATTGGAAATTAGATTGGA 3'<br>     ||||  |||| |||<br> 3' TGTAAT-TTTAGTCTCGCTCC 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_PAIR_0_COMPL_END_TH</td><td>6.56</td></tr>
+<tr><td>PRIMER_PAIR_0_COMPL_END_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 6.6&deg;C  dG: -660 cal/mol  dH: -97000 cal/mol  dS: -311 cal/mol*K<br>5' AGCATTGGAAATTAGATTGGA 3'<br>     ||||  |||| |||   ||<br> 3' TGTAAT-TTTAGTCTCG-CTCC 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_PAIR_0_PRODUCT_SIZE</td><td>94</td></tr>
+</table>
+<h3>Primer 1</h3>
+<table border=1>
+<tr><th>Parameter</td><th>Value</th></tr>
+<tr><td>PRIMER_PAIR_1_PENALTY</td><td>2.604432</td></tr>
+<tr><td>PRIMER_LEFT_1_PENALTY</td><td>2.007052</td></tr>
+<tr><td>PRIMER_RIGHT_1_PENALTY</td><td>0.597380</td></tr>
+<tr><td>PRIMER_INTERNAL_1_PENALTY</td><td>8.629312</td></tr>
+<tr><td>PRIMER_LEFT_1_SEQUENCE_FWD (5'-3')</td><td>AAGCATTGGAAATTAGATTGGA</td></tr>
+<tr><td>PRIMER_RIGHT_1_SEQUENCE_REV</td><td>ACATTAAAATCAGAGCGAGG</td></tr>
+<tr><td>PRIMER_RIGHT_1_SEQUENCE_REVCOMP (5'-3')</td><td>CCTCGCTCTGATTTTAATGT</td></tr>
+<tr><td>PRIMER_INTERNAL_1_SEQUENCE</td><td>ACCAGACGTAATAGTACCTGGTTTGAAAAATGGAC</td></tr>
+<tr><td>PRIMER_LEFT_1</td><td>351,22</td></tr>
+<tr><td>PRIMER_RIGHT_1</td><td>445,20</td></tr>
+<tr><td>PRIMER_INTERNAL_1</td><td>374,35</td></tr>
+<tr><td>PRIMER_LEFT_1_TM</td><td>54.007</td></tr>
+<tr><td>PRIMER_RIGHT_1_TM</td><td>53.403</td></tr>
+<tr><td>PRIMER_INTERNAL_1_TM</td><td>60.371</td></tr>
+<tr><td>PRIMER_LEFT_1_GC_PERCENT</td><td>31.818</td></tr>
+<tr><td>PRIMER_RIGHT_1_GC_PERCENT</td><td>40.000</td></tr>
+<tr><td>PRIMER_INTERNAL_1_GC_PERCENT</td><td>40.000</td></tr>
+<tr><td>PRIMER_INTERNAL_1_SELF_ANY_TH</td><td>13.29</td></tr>
+<tr><td>PRIMER_LEFT_1_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_1_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_1_SELF_ANY_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 13.3&deg;C  dG: -2787 cal/mol  dH: -101800 cal/mol  dS: -319 cal/mol*K<br>             5' ACCAGACGTAATAGTAC--CTGGTTTGAAAAATGGAC 3'<br>                |||||  ||| || |||  |||||<br>3' CAGGTAAAAAGTTTGGTC--CATGATAATGCAGACCA 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_INTERNAL_1_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_1_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_1_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_1_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_1_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_1_HAIRPIN_TH</td><td>37.57</td></tr>
+<tr><td>PRIMER_INTERNAL_1_HAIRPIN_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 37.6&deg;C  dG: -83 cal/mol  dH: -45100 cal/mol  dS: -145 cal/mol*K<br>           5' ACCAGACGTAAT&#x2510;<br>              |||||  |||  &#x2502;<br>3' CAGGTAAAAAGTTTGGTCCATGA&#x2518;<br></pre></p></td></tr>
+<tr><td>PRIMER_LEFT_1_END_STABILITY</td><td>3.5300</td></tr>
+<tr><td>PRIMER_RIGHT_1_END_STABILITY</td><td>2.7100</td></tr>
+<tr><td>PRIMER_PAIR_1_COMPL_ANY_TH</td><td>8.83</td></tr>
+<tr><td>PRIMER_PAIR_1_COMPL_ANY_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 8.8&deg;C  dG: -3135 cal/mol  dH: -80900 cal/mol  dS: -251 cal/mol*K<br>5' AAGCATTGGAAATTAGATTGGA 3'<br>      ||||  |||| |||<br>  3' TGTAAT-TTTAGTCTCGCTCC 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_PAIR_1_COMPL_END_TH</td><td>6.56</td></tr>
+<tr><td>PRIMER_PAIR_1_COMPL_END_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 6.6&deg;C  dG: -660 cal/mol  dH: -97000 cal/mol  dS: -311 cal/mol*K<br>5' AAGCATTGGAAATTAGATTGGA 3'<br>      ||||  |||| |||   ||<br>  3' TGTAAT-TTTAGTCTCG-CTCC 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_PAIR_1_PRODUCT_SIZE</td><td>95</td></tr>
+</table>
+<h3>Primer 2</h3>
+<table border=1>
+<tr><th>Parameter</td><th>Value</th></tr>
+<tr><td>PRIMER_PAIR_2_PENALTY</td><td>2.681518</td></tr>
+<tr><td>PRIMER_LEFT_2_PENALTY</td><td>2.084137</td></tr>
+<tr><td>PRIMER_RIGHT_2_PENALTY</td><td>0.597380</td></tr>
+<tr><td>PRIMER_INTERNAL_2_PENALTY</td><td>8.629312</td></tr>
+<tr><td>PRIMER_LEFT_2_SEQUENCE_FWD (5'-3')</td><td>GCATTGGAAATTAGATTGGAG</td></tr>
+<tr><td>PRIMER_RIGHT_2_SEQUENCE_REV</td><td>ACATTAAAATCAGAGCGAGG</td></tr>
+<tr><td>PRIMER_RIGHT_2_SEQUENCE_REVCOMP (5'-3')</td><td>CCTCGCTCTGATTTTAATGT</td></tr>
+<tr><td>PRIMER_INTERNAL_2_SEQUENCE</td><td>ACCAGACGTAATAGTACCTGGTTTGAAAAATGGAC</td></tr>
+<tr><td>PRIMER_LEFT_2</td><td>353,21</td></tr>
+<tr><td>PRIMER_RIGHT_2</td><td>445,20</td></tr>
+<tr><td>PRIMER_INTERNAL_2</td><td>374,35</td></tr>
+<tr><td>PRIMER_LEFT_2_TM</td><td>52.916</td></tr>
+<tr><td>PRIMER_RIGHT_2_TM</td><td>53.403</td></tr>
+<tr><td>PRIMER_INTERNAL_2_TM</td><td>60.371</td></tr>
+<tr><td>PRIMER_LEFT_2_GC_PERCENT</td><td>38.095</td></tr>
+<tr><td>PRIMER_RIGHT_2_GC_PERCENT</td><td>40.000</td></tr>
+<tr><td>PRIMER_INTERNAL_2_GC_PERCENT</td><td>40.000</td></tr>
+<tr><td>PRIMER_INTERNAL_2_SELF_ANY_TH</td><td>13.29</td></tr>
+<tr><td>PRIMER_LEFT_2_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_2_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_2_SELF_ANY_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 13.3&deg;C  dG: -2787 cal/mol  dH: -101800 cal/mol  dS: -319 cal/mol*K<br>             5' ACCAGACGTAATAGTAC--CTGGTTTGAAAAATGGAC 3'<br>                |||||  ||| || |||  |||||<br>3' CAGGTAAAAAGTTTGGTC--CATGATAATGCAGACCA 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_INTERNAL_2_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_2_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_2_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_2_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_2_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_2_HAIRPIN_TH</td><td>37.57</td></tr>
+<tr><td>PRIMER_INTERNAL_2_HAIRPIN_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 37.6&deg;C  dG: -83 cal/mol  dH: -45100 cal/mol  dS: -145 cal/mol*K<br>           5' ACCAGACGTAAT&#x2510;<br>              |||||  |||  &#x2502;<br>3' CAGGTAAAAAGTTTGGTCCATGA&#x2518;<br></pre></p></td></tr>
+<tr><td>PRIMER_LEFT_2_END_STABILITY</td><td>3.8600</td></tr>
+<tr><td>PRIMER_RIGHT_2_END_STABILITY</td><td>2.7100</td></tr>
+<tr><td>PRIMER_PAIR_2_COMPL_ANY_TH</td><td>8.83</td></tr>
+<tr><td>PRIMER_PAIR_2_COMPL_ANY_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 8.8&deg;C  dG: -3135 cal/mol  dH: -80900 cal/mol  dS: -251 cal/mol*K<br>5' GCATTGGAAATTAGATTGGAG 3'<br>    ||||  |||| |||<br>3' TGTAAT-TTTAGTCTCGCTCC 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_PAIR_2_COMPL_END_TH</td><td>13.02</td></tr>
+<tr><td>PRIMER_PAIR_2_COMPL_END_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 13.0&deg;C  dG: -2225 cal/mol  dH: -107300 cal/mol  dS: -339 cal/mol*K<br>5' GCATTGGAAATTAGATTGGAG 3'<br>    ||||  |||| |||   |||<br>3' TGTAAT-TTTAGTCTCG-CTCC 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_PAIR_2_PRODUCT_SIZE</td><td>93</td></tr>
+</table>
+<h3>Primer 3</h3>
+<table border=1>
+<tr><th>Parameter</td><th>Value</th></tr>
+<tr><td>PRIMER_PAIR_3_PENALTY</td><td>2.733824</td></tr>
+<tr><td>PRIMER_LEFT_3_PENALTY</td><td>1.874520</td></tr>
+<tr><td>PRIMER_RIGHT_3_PENALTY</td><td>0.859304</td></tr>
+<tr><td>PRIMER_INTERNAL_3_PENALTY</td><td>8.629312</td></tr>
+<tr><td>PRIMER_LEFT_3_SEQUENCE_FWD (5'-3')</td><td>AGCATTGGAAATTAGATTGGA</td></tr>
+<tr><td>PRIMER_RIGHT_3_SEQUENCE_REV</td><td>CATTAAAATCAGAGCGAGGC</td></tr>
+<tr><td>PRIMER_RIGHT_3_SEQUENCE_REVCOMP (5'-3')</td><td>GCCTCGCTCTGATTTTAATG</td></tr>
+<tr><td>PRIMER_INTERNAL_3_SEQUENCE</td><td>ACCAGACGTAATAGTACCTGGTTTGAAAAATGGAC</td></tr>
+<tr><td>PRIMER_LEFT_3</td><td>352,21</td></tr>
+<tr><td>PRIMER_RIGHT_3</td><td>446,20</td></tr>
+<tr><td>PRIMER_INTERNAL_3</td><td>374,35</td></tr>
+<tr><td>PRIMER_LEFT_3_TM</td><td>53.125</td></tr>
+<tr><td>PRIMER_RIGHT_3_TM</td><td>54.859</td></tr>
+<tr><td>PRIMER_INTERNAL_3_TM</td><td>60.371</td></tr>
+<tr><td>PRIMER_LEFT_3_GC_PERCENT</td><td>33.333</td></tr>
+<tr><td>PRIMER_RIGHT_3_GC_PERCENT</td><td>45.000</td></tr>
+<tr><td>PRIMER_INTERNAL_3_GC_PERCENT</td><td>40.000</td></tr>
+<tr><td>PRIMER_INTERNAL_3_SELF_ANY_TH</td><td>13.29</td></tr>
+<tr><td>PRIMER_LEFT_3_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_3_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_3_SELF_ANY_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 13.3&deg;C  dG: -2787 cal/mol  dH: -101800 cal/mol  dS: -319 cal/mol*K<br>             5' ACCAGACGTAATAGTAC--CTGGTTTGAAAAATGGAC 3'<br>                |||||  ||| || |||  |||||<br>3' CAGGTAAAAAGTTTGGTC--CATGATAATGCAGACCA 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_INTERNAL_3_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_3_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_3_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_3_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_3_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_3_HAIRPIN_TH</td><td>37.57</td></tr>
+<tr><td>PRIMER_INTERNAL_3_HAIRPIN_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 37.6&deg;C  dG: -83 cal/mol  dH: -45100 cal/mol  dS: -145 cal/mol*K<br>           5' ACCAGACGTAAT&#x2510;<br>              |||||  |||  &#x2502;<br>3' CAGGTAAAAAGTTTGGTCCATGA&#x2518;<br></pre></p></td></tr>
+<tr><td>PRIMER_LEFT_3_END_STABILITY</td><td>3.5300</td></tr>
+<tr><td>PRIMER_RIGHT_3_END_STABILITY</td><td>1.9000</td></tr>
+<tr><td>PRIMER_PAIR_3_COMPL_ANY_TH</td><td>6.26</td></tr>
+<tr><td>PRIMER_PAIR_3_COMPL_ANY_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 6.3&deg;C  dG: -2798 cal/mol  dH: -76500 cal/mol  dS: -238 cal/mol*K<br>5' AGCATTGGAAATTAGATTGGA 3'<br>     ||||  |||| |||<br>  3' GTAAT-TTTAGTCTCGCTCCG 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_PAIR_3_COMPL_END_TH</td><td>6.26</td></tr>
+<tr><td>PRIMER_PAIR_3_COMPL_END_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 6.3&deg;C  dG: -2798 cal/mol  dH: -76500 cal/mol  dS: -238 cal/mol*K<br>5' GCCTCGCTCTGATTTT-AATG 3'<br>          ||| ||||  ||||<br>  3' AGGTTAGATTAAAGGTTACGA 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_PAIR_3_PRODUCT_SIZE</td><td>95</td></tr>
+</table>
+<h3>Primer 4</h3>
+<table border=1>
+<tr><th>Parameter</td><th>Value</th></tr>
+<tr><td>PRIMER_PAIR_4_PENALTY</td><td>2.848111</td></tr>
+<tr><td>PRIMER_LEFT_4_PENALTY</td><td>0.031205</td></tr>
+<tr><td>PRIMER_RIGHT_4_PENALTY</td><td>2.816906</td></tr>
+<tr><td>PRIMER_INTERNAL_4_PENALTY</td><td>4.505149</td></tr>
+<tr><td>PRIMER_LEFT_4_SEQUENCE_FWD (5'-3')</td><td>TGGCACAGCAGAATTAAAAA</td></tr>
+<tr><td>PRIMER_RIGHT_4_SEQUENCE_REV</td><td>ATCCTAATATGTTAATGGCGA</td></tr>
+<tr><td>PRIMER_RIGHT_4_SEQUENCE_REVCOMP (5'-3')</td><td>TCGCCATTAACATATTAGGAT</td></tr>
+<tr><td>PRIMER_INTERNAL_4_SEQUENCE</td><td>CAAGGGGAAACTGGAAGACAAATAGGTTGGT</td></tr>
+<tr><td>PRIMER_LEFT_4</td><td>1784,20</td></tr>
+<tr><td>PRIMER_RIGHT_4</td><td>1881,21</td></tr>
+<tr><td>PRIMER_INTERNAL_4</td><td>1809,31</td></tr>
+<tr><td>PRIMER_LEFT_4_TM</td><td>53.969</td></tr>
+<tr><td>PRIMER_RIGHT_4_TM</td><td>52.183</td></tr>
+<tr><td>PRIMER_INTERNAL_4_TM</td><td>60.495</td></tr>
+<tr><td>PRIMER_LEFT_4_GC_PERCENT</td><td>35.000</td></tr>
+<tr><td>PRIMER_RIGHT_4_GC_PERCENT</td><td>33.333</td></tr>
+<tr><td>PRIMER_INTERNAL_4_GC_PERCENT</td><td>45.161</td></tr>
+<tr><td>PRIMER_INTERNAL_4_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_4_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_4_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_4_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_4_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_4_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_4_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_4_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_4_HAIRPIN_TH</td><td>33.88</td></tr>
+<tr><td>PRIMER_INTERNAL_4_HAIRPIN_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 33.9&deg;C  dG: 369 cal/mol  dH: -36300 cal/mol  dS: -118 cal/mol*K<br>5' CAAGGGGAAACTGGAAGA&#x2510;<br>             ||      &#x2502;<br>     3' TGGTTGGATAAAC&#x2518;<br></pre></p></td></tr>
+<tr><td>PRIMER_LEFT_4_END_STABILITY</td><td>1.9400</td></tr>
+<tr><td>PRIMER_RIGHT_4_END_STABILITY</td><td>3.2400</td></tr>
+<tr><td>PRIMER_PAIR_4_COMPL_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_PAIR_4_COMPL_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_PAIR_4_PRODUCT_SIZE</td><td>98</td></tr>
+</table>
+<h3>Primer 5</h3>
+<table border=1>
+<tr><th>Parameter</td><th>Value</th></tr>
+<tr><td>PRIMER_PAIR_5_PENALTY</td><td>2.848111</td></tr>
+<tr><td>PRIMER_LEFT_5_PENALTY</td><td>0.031205</td></tr>
+<tr><td>PRIMER_RIGHT_5_PENALTY</td><td>2.816906</td></tr>
+<tr><td>PRIMER_INTERNAL_5_PENALTY</td><td>4.505149</td></tr>
+<tr><td>PRIMER_LEFT_5_SEQUENCE_FWD (5'-3')</td><td>TGGCACAGCAGAATTAAAAA</td></tr>
+<tr><td>PRIMER_RIGHT_5_SEQUENCE_REV</td><td>TCCTAATATGTTAATGGCGAT</td></tr>
+<tr><td>PRIMER_RIGHT_5_SEQUENCE_REVCOMP (5'-3')</td><td>ATCGCCATTAACATATTAGGA</td></tr>
+<tr><td>PRIMER_INTERNAL_5_SEQUENCE</td><td>CAAGGGGAAACTGGAAGACAAATAGGTTGGT</td></tr>
+<tr><td>PRIMER_LEFT_5</td><td>1784,20</td></tr>
+<tr><td>PRIMER_RIGHT_5</td><td>1882,21</td></tr>
+<tr><td>PRIMER_INTERNAL_5</td><td>1809,31</td></tr>
+<tr><td>PRIMER_LEFT_5_TM</td><td>53.969</td></tr>
+<tr><td>PRIMER_RIGHT_5_TM</td><td>52.183</td></tr>
+<tr><td>PRIMER_INTERNAL_5_TM</td><td>60.495</td></tr>
+<tr><td>PRIMER_LEFT_5_GC_PERCENT</td><td>35.000</td></tr>
+<tr><td>PRIMER_RIGHT_5_GC_PERCENT</td><td>33.333</td></tr>
+<tr><td>PRIMER_INTERNAL_5_GC_PERCENT</td><td>45.161</td></tr>
+<tr><td>PRIMER_INTERNAL_5_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_5_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_5_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_5_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_5_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_5_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_5_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_5_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_5_HAIRPIN_TH</td><td>33.88</td></tr>
+<tr><td>PRIMER_INTERNAL_5_HAIRPIN_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 33.9&deg;C  dG: 369 cal/mol  dH: -36300 cal/mol  dS: -118 cal/mol*K<br>5' CAAGGGGAAACTGGAAGA&#x2510;<br>             ||      &#x2502;<br>     3' TGGTTGGATAAAC&#x2518;<br></pre></p></td></tr>
+<tr><td>PRIMER_LEFT_5_END_STABILITY</td><td>1.9400</td></tr>
+<tr><td>PRIMER_RIGHT_5_END_STABILITY</td><td>2.9400</td></tr>
+<tr><td>PRIMER_PAIR_5_COMPL_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_PAIR_5_COMPL_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_PAIR_5_PRODUCT_SIZE</td><td>99</td></tr>
+</table>
+<h3>Primer 6</h3>
+<table border=1>
+<tr><th>Parameter</td><th>Value</th></tr>
+<tr><td>PRIMER_PAIR_6_PENALTY</td><td>2.866355</td></tr>
+<tr><td>PRIMER_LEFT_6_PENALTY</td><td>2.007052</td></tr>
+<tr><td>PRIMER_RIGHT_6_PENALTY</td><td>0.859304</td></tr>
+<tr><td>PRIMER_INTERNAL_6_PENALTY</td><td>8.629312</td></tr>
+<tr><td>PRIMER_LEFT_6_SEQUENCE_FWD (5'-3')</td><td>AAGCATTGGAAATTAGATTGGA</td></tr>
+<tr><td>PRIMER_RIGHT_6_SEQUENCE_REV</td><td>CATTAAAATCAGAGCGAGGC</td></tr>
+<tr><td>PRIMER_RIGHT_6_SEQUENCE_REVCOMP (5'-3')</td><td>GCCTCGCTCTGATTTTAATG</td></tr>
+<tr><td>PRIMER_INTERNAL_6_SEQUENCE</td><td>ACCAGACGTAATAGTACCTGGTTTGAAAAATGGAC</td></tr>
+<tr><td>PRIMER_LEFT_6</td><td>351,22</td></tr>
+<tr><td>PRIMER_RIGHT_6</td><td>446,20</td></tr>
+<tr><td>PRIMER_INTERNAL_6</td><td>374,35</td></tr>
+<tr><td>PRIMER_LEFT_6_TM</td><td>54.007</td></tr>
+<tr><td>PRIMER_RIGHT_6_TM</td><td>54.859</td></tr>
+<tr><td>PRIMER_INTERNAL_6_TM</td><td>60.371</td></tr>
+<tr><td>PRIMER_LEFT_6_GC_PERCENT</td><td>31.818</td></tr>
+<tr><td>PRIMER_RIGHT_6_GC_PERCENT</td><td>45.000</td></tr>
+<tr><td>PRIMER_INTERNAL_6_GC_PERCENT</td><td>40.000</td></tr>
+<tr><td>PRIMER_INTERNAL_6_SELF_ANY_TH</td><td>13.29</td></tr>
+<tr><td>PRIMER_LEFT_6_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_6_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_6_SELF_ANY_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 13.3&deg;C  dG: -2787 cal/mol  dH: -101800 cal/mol  dS: -319 cal/mol*K<br>             5' ACCAGACGTAATAGTAC--CTGGTTTGAAAAATGGAC 3'<br>                |||||  ||| || |||  |||||<br>3' CAGGTAAAAAGTTTGGTC--CATGATAATGCAGACCA 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_INTERNAL_6_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_6_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_6_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_6_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_6_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_6_HAIRPIN_TH</td><td>37.57</td></tr>
+<tr><td>PRIMER_INTERNAL_6_HAIRPIN_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 37.6&deg;C  dG: -83 cal/mol  dH: -45100 cal/mol  dS: -145 cal/mol*K<br>           5' ACCAGACGTAAT&#x2510;<br>              |||||  |||  &#x2502;<br>3' CAGGTAAAAAGTTTGGTCCATGA&#x2518;<br></pre></p></td></tr>
+<tr><td>PRIMER_LEFT_6_END_STABILITY</td><td>3.5300</td></tr>
+<tr><td>PRIMER_RIGHT_6_END_STABILITY</td><td>1.9000</td></tr>
+<tr><td>PRIMER_PAIR_6_COMPL_ANY_TH</td><td>6.26</td></tr>
+<tr><td>PRIMER_PAIR_6_COMPL_ANY_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 6.3&deg;C  dG: -2798 cal/mol  dH: -76500 cal/mol  dS: -238 cal/mol*K<br>5' AAGCATTGGAAATTAGATTGGA 3'<br>      ||||  |||| |||<br>   3' GTAAT-TTTAGTCTCGCTCCG 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_PAIR_6_COMPL_END_TH</td><td>6.26</td></tr>
+<tr><td>PRIMER_PAIR_6_COMPL_END_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 6.3&deg;C  dG: -2798 cal/mol  dH: -76500 cal/mol  dS: -238 cal/mol*K<br>5' GCCTCGCTCTGATTTT-AATG 3'<br>          ||| ||||  ||||<br>  3' AGGTTAGATTAAAGGTTACGAA 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_PAIR_6_PRODUCT_SIZE</td><td>96</td></tr>
+</table>
+<h3>Primer 7</h3>
+<table border=1>
+<tr><th>Parameter</td><th>Value</th></tr>
+<tr><td>PRIMER_PAIR_7_PENALTY</td><td>2.927563</td></tr>
+<tr><td>PRIMER_LEFT_7_PENALTY</td><td>0.031205</td></tr>
+<tr><td>PRIMER_RIGHT_7_PENALTY</td><td>2.896358</td></tr>
+<tr><td>PRIMER_INTERNAL_7_PENALTY</td><td>4.505149</td></tr>
+<tr><td>PRIMER_LEFT_7_SEQUENCE_FWD (5'-3')</td><td>TGGCACAGCAGAATTAAAAA</td></tr>
+<tr><td>PRIMER_RIGHT_7_SEQUENCE_REV</td><td>AATCCTAATATGTTAATGGCGA</td></tr>
+<tr><td>PRIMER_RIGHT_7_SEQUENCE_REVCOMP (5'-3')</td><td>TCGCCATTAACATATTAGGATT</td></tr>
+<tr><td>PRIMER_INTERNAL_7_SEQUENCE</td><td>CAAGGGGAAACTGGAAGACAAATAGGTTGGT</td></tr>
+<tr><td>PRIMER_LEFT_7</td><td>1784,20</td></tr>
+<tr><td>PRIMER_RIGHT_7</td><td>1881,22</td></tr>
+<tr><td>PRIMER_INTERNAL_7</td><td>1809,31</td></tr>
+<tr><td>PRIMER_LEFT_7_TM</td><td>53.969</td></tr>
+<tr><td>PRIMER_RIGHT_7_TM</td><td>53.104</td></tr>
+<tr><td>PRIMER_INTERNAL_7_TM</td><td>60.495</td></tr>
+<tr><td>PRIMER_LEFT_7_GC_PERCENT</td><td>35.000</td></tr>
+<tr><td>PRIMER_RIGHT_7_GC_PERCENT</td><td>31.818</td></tr>
+<tr><td>PRIMER_INTERNAL_7_GC_PERCENT</td><td>45.161</td></tr>
+<tr><td>PRIMER_INTERNAL_7_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_7_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_7_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_7_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_7_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_7_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_7_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_7_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_7_HAIRPIN_TH</td><td>33.88</td></tr>
+<tr><td>PRIMER_INTERNAL_7_HAIRPIN_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 33.9&deg;C  dG: 369 cal/mol  dH: -36300 cal/mol  dS: -118 cal/mol*K<br>5' CAAGGGGAAACTGGAAGA&#x2510;<br>             ||      &#x2502;<br>     3' TGGTTGGATAAAC&#x2518;<br></pre></p></td></tr>
+<tr><td>PRIMER_LEFT_7_END_STABILITY</td><td>1.9400</td></tr>
+<tr><td>PRIMER_RIGHT_7_END_STABILITY</td><td>3.0100</td></tr>
+<tr><td>PRIMER_PAIR_7_COMPL_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_PAIR_7_COMPL_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_PAIR_7_PRODUCT_SIZE</td><td>98</td></tr>
+</table>
+<h3>Primer 8</h3>
+<table border=1>
+<tr><th>Parameter</td><th>Value</th></tr>
+<tr><td>PRIMER_PAIR_8_PENALTY</td><td>2.927563</td></tr>
+<tr><td>PRIMER_LEFT_8_PENALTY</td><td>0.031205</td></tr>
+<tr><td>PRIMER_RIGHT_8_PENALTY</td><td>2.896358</td></tr>
+<tr><td>PRIMER_INTERNAL_8_PENALTY</td><td>4.505149</td></tr>
+<tr><td>PRIMER_LEFT_8_SEQUENCE_FWD (5'-3')</td><td>TGGCACAGCAGAATTAAAAA</td></tr>
+<tr><td>PRIMER_RIGHT_8_SEQUENCE_REV</td><td>TCCTAATATGTTAATGGCGATT</td></tr>
+<tr><td>PRIMER_RIGHT_8_SEQUENCE_REVCOMP (5'-3')</td><td>AATCGCCATTAACATATTAGGA</td></tr>
+<tr><td>PRIMER_INTERNAL_8_SEQUENCE</td><td>CAAGGGGAAACTGGAAGACAAATAGGTTGGT</td></tr>
+<tr><td>PRIMER_LEFT_8</td><td>1784,20</td></tr>
+<tr><td>PRIMER_RIGHT_8</td><td>1883,22</td></tr>
+<tr><td>PRIMER_INTERNAL_8</td><td>1809,31</td></tr>
+<tr><td>PRIMER_LEFT_8_TM</td><td>53.969</td></tr>
+<tr><td>PRIMER_RIGHT_8_TM</td><td>53.104</td></tr>
+<tr><td>PRIMER_INTERNAL_8_TM</td><td>60.495</td></tr>
+<tr><td>PRIMER_LEFT_8_GC_PERCENT</td><td>35.000</td></tr>
+<tr><td>PRIMER_RIGHT_8_GC_PERCENT</td><td>31.818</td></tr>
+<tr><td>PRIMER_INTERNAL_8_GC_PERCENT</td><td>45.161</td></tr>
+<tr><td>PRIMER_INTERNAL_8_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_8_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_8_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_8_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_8_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_8_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_8_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_8_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_8_HAIRPIN_TH</td><td>33.88</td></tr>
+<tr><td>PRIMER_INTERNAL_8_HAIRPIN_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 33.9&deg;C  dG: 369 cal/mol  dH: -36300 cal/mol  dS: -118 cal/mol*K<br>5' CAAGGGGAAACTGGAAGA&#x2510;<br>             ||      &#x2502;<br>     3' TGGTTGGATAAAC&#x2518;<br></pre></p></td></tr>
+<tr><td>PRIMER_LEFT_8_END_STABILITY</td><td>1.9400</td></tr>
+<tr><td>PRIMER_RIGHT_8_END_STABILITY</td><td>2.9400</td></tr>
+<tr><td>PRIMER_PAIR_8_COMPL_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_PAIR_8_COMPL_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_PAIR_8_PRODUCT_SIZE</td><td>100</td></tr>
+</table>
+<h3>Primer 9</h3>
+<table border=1>
+<tr><th>Parameter</td><th>Value</th></tr>
+<tr><td>PRIMER_PAIR_9_PENALTY</td><td>2.943441</td></tr>
+<tr><td>PRIMER_LEFT_9_PENALTY</td><td>2.084137</td></tr>
+<tr><td>PRIMER_RIGHT_9_PENALTY</td><td>0.859304</td></tr>
+<tr><td>PRIMER_INTERNAL_9_PENALTY</td><td>8.629312</td></tr>
+<tr><td>PRIMER_LEFT_9_SEQUENCE_FWD (5'-3')</td><td>GCATTGGAAATTAGATTGGAG</td></tr>
+<tr><td>PRIMER_RIGHT_9_SEQUENCE_REV</td><td>CATTAAAATCAGAGCGAGGC</td></tr>
+<tr><td>PRIMER_RIGHT_9_SEQUENCE_REVCOMP (5'-3')</td><td>GCCTCGCTCTGATTTTAATG</td></tr>
+<tr><td>PRIMER_INTERNAL_9_SEQUENCE</td><td>ACCAGACGTAATAGTACCTGGTTTGAAAAATGGAC</td></tr>
+<tr><td>PRIMER_LEFT_9</td><td>353,21</td></tr>
+<tr><td>PRIMER_RIGHT_9</td><td>446,20</td></tr>
+<tr><td>PRIMER_INTERNAL_9</td><td>374,35</td></tr>
+<tr><td>PRIMER_LEFT_9_TM</td><td>52.916</td></tr>
+<tr><td>PRIMER_RIGHT_9_TM</td><td>54.859</td></tr>
+<tr><td>PRIMER_INTERNAL_9_TM</td><td>60.371</td></tr>
+<tr><td>PRIMER_LEFT_9_GC_PERCENT</td><td>38.095</td></tr>
+<tr><td>PRIMER_RIGHT_9_GC_PERCENT</td><td>45.000</td></tr>
+<tr><td>PRIMER_INTERNAL_9_GC_PERCENT</td><td>40.000</td></tr>
+<tr><td>PRIMER_INTERNAL_9_SELF_ANY_TH</td><td>13.29</td></tr>
+<tr><td>PRIMER_LEFT_9_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_9_SELF_ANY_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_9_SELF_ANY_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 13.3&deg;C  dG: -2787 cal/mol  dH: -101800 cal/mol  dS: -319 cal/mol*K<br>             5' ACCAGACGTAATAGTAC--CTGGTTTGAAAAATGGAC 3'<br>                |||||  ||| || |||  |||||<br>3' CAGGTAAAAAGTTTGGTC--CATGATAATGCAGACCA 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_INTERNAL_9_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_9_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_9_SELF_END_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_LEFT_9_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_RIGHT_9_HAIRPIN_TH</td><td>0.00</td></tr>
+<tr><td>PRIMER_INTERNAL_9_HAIRPIN_TH</td><td>37.57</td></tr>
+<tr><td>PRIMER_INTERNAL_9_HAIRPIN_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 37.6&deg;C  dG: -83 cal/mol  dH: -45100 cal/mol  dS: -145 cal/mol*K<br>           5' ACCAGACGTAAT&#x2510;<br>              |||||  |||  &#x2502;<br>3' CAGGTAAAAAGTTTGGTCCATGA&#x2518;<br></pre></p></td></tr>
+<tr><td>PRIMER_LEFT_9_END_STABILITY</td><td>3.8600</td></tr>
+<tr><td>PRIMER_RIGHT_9_END_STABILITY</td><td>1.9000</td></tr>
+<tr><td>PRIMER_PAIR_9_COMPL_ANY_TH</td><td>6.26</td></tr>
+<tr><td>PRIMER_PAIR_9_COMPL_ANY_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 6.3&deg;C  dG: -2798 cal/mol  dH: -76500 cal/mol  dS: -238 cal/mol*K<br>5' GCATTGGAAATTAGATTGGAG 3'<br>    ||||  |||| |||<br> 3' GTAAT-TTTAGTCTCGCTCCG 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_PAIR_9_COMPL_END_TH</td><td>11.22</td></tr>
+<tr><td>PRIMER_PAIR_9_COMPL_END_STUCT</td><td><p style="font-family:'Lucida Console', monospace"><pre>Tm: 11.2&deg;C  dG: -1888 cal/mol  dH: -102900 cal/mol  dS: -326 cal/mol*K<br>5' GCATTGGAAATTAGATTGGAG 3'<br>    ||||  |||| |||   |||<br> 3' GTAAT-TTTAGTCTCG-CTCCG 5'<br></pre></p></td></tr>
+<tr><td>PRIMER_PAIR_9_PRODUCT_SIZE</td><td>94</td></tr>
+</table>
+
+</html>
+</body>
