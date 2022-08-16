@@ -20,7 +20,7 @@ The processing time of the sample dataset is about 15 sec on a laptop with Intel
 ## Installation & Dependencies
 Install Python3.8 in miniconda. https://docs.conda.io/en/latest/miniconda.html
 
-Download and uncompress consensus_prime.py and primer3_parameters.txt from GitHub.
+Download and uncompress all files from the GitHub repository.
 ```bash
 wget https://github.com/mcollatz/ConsensusPrime/archive/refs/heads/main.zip
 unzip main.zip
