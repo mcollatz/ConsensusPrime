@@ -51,7 +51,7 @@ conda install pandas
 
 Download the example_data.fna and primer3_parameters.txt then run the following command (remember to adjust the file paths accordingly).
 ```bash
-python3.8 /path_to/consensus_prime.py -infile /path_to/example_data.fna --primer3 /path_to/primer3_parameters.txt
+python3.8 /path_to/consensus_prime.py --infile /path_to/example_data.fna --primer3 /path_to/primer3_parameters.txt
 ```
 
 **Options:**
