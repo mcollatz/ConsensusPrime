@@ -110,7 +110,7 @@ def insert_newlines(string, linelen=64): # linelen= 64 is recommended for a well
 # function to build mafft alignments
 def align(infile,outfile):
     with open(outfile, 'w') as outfile:
-        subprocess.call(['mafft','--auto' , '--adjustdirection', '--reorder', '--thread', threads, infile], stdout=outfile, stderr=subprocess.DEVNULL)
+        subprocess.call(['mafft','--auto' , '--adjustdirection', '--thread', threads, infile], stdout=outfile, stderr=subprocess.DEVNULL)
 
 # reverse complement
 def revcomp(seq):
@@ -155,7 +155,13 @@ with open(outfile, 'w') as outfile:
     for header in fasta:
         outfile.write(f'>{header}\n')
         outfile.write(f'{insert_newlines(fasta[header])}\n')
-align(infile=f'{outdir}/base_fasta.fna', outfile=f'{outdir}/base_alignment.fna')
+
+if len(fasta) > 1:
+    with open(f'{outdir}/base_alignment.fna', 'w') as outfile:
+            subprocess.call(['mafft','--auto' , '--adjustdirection', '--reorder', '--thread', threads, f'{outdir}/base_fasta.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
+else:
+    with open(f'{outdir}/base_alignment.fna', 'w') as outfile:
+            subprocess.call(['mafft','--auto' , '--adjustdirection', '--thread', threads, f'{outdir}/base_fasta.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
 
 # read base_alignment fasta
 fasta, fastaheader = read_fasta(f'{outdir}/base_alignment.fna', delim, idpos)
