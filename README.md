@@ -1,6 +1,8 @@
 # ConsensusPrime
 Pipeline for filtering and cleaning of multiple sequence alignments to identify ideal consensus regions from homologue sequences for primer design.
 
+Publication: https://doi.org/10.3390/biomedinformatics2040041
+
 ## System Requirements
 
 The pipeline is developed and testet for:
