@@ -247,7 +247,10 @@ with open(outfile,'w') as outfile:
         outfile.write(f'{insert_newlines(similarity_filtered_dict[header])}\n')
 # build new alignment without unsimilar sequences
 print(f'Building and writing similarity filtered alignment to: {outdir}/{unique}similarity_filtered_alignment.fna\n')
-align(infile=f'{outdir}/{unique}similarity_filtered_fasta.fna', outfile=f'{outdir}/{unique}similarity_filtered_alignment.fna')
+if len(similarity_filtered_dict) > 1:
+    align(infile=f'{outdir}/{unique}similarity_filtered_fasta.fna', outfile=f'{outdir}/{unique}similarity_filtered_alignment.fna')
+else:
+    os.system(f'cp {outdir}/{unique}similarity_filtered_fasta.fna {outdir}/{unique}similarity_filtered_alignment.fna')
 
 # read similarity_filtered_alignment fasta
 fasta, fastaheader = read_fasta(f'{outdir}/{unique}similarity_filtered_alignment.fna', delim, idpos)
