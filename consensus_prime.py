@@ -568,6 +568,65 @@ with open(f'{outdir}/consensusregions_alignment.fna', 'w') as outfile:
 if primer_dict:
     with open(f'{outdir}/final_alignment.fna', 'w') as outfile:
         subprocess.call(['mafft','--6merpair', '--thread', threads, '--adjustdirection',  '--addfragments', f'{outdir}/primer_fasta.fna', f'{outdir}/consensusregions_alignment.fna'], stdout=outfile, stderr=subprocess.DEVNULL)
+    
+    # read final_alignment fasta
+    fasta, fastaheader = read_fasta(f'{outdir}/final_alignment.fna', delim, idpos)
+
+
+## generate alignment html table
+
+# Define color codes for each nucleotide
+color_codes = {
+    'A': 'lightgreen',
+    'C': 'lightyellow',
+    'G': 'lightsalmon',
+    'T': 'lightblue',
+    'U': 'lightcyan',
+    '-': 'white'  # Gap symbol
+}
+if primer_dict:
+    alignment_table = ''
+
+    alignment_table += '<style>'
+    alignment_table += 'table { border-collapse: collapse; }\n'
+    alignment_table += 'table.outer { border: 1px solid black; }\n'
+    alignment_table += 'table.outer td { font-family: monospace; padding: 1px; white-space:nowrap;}\n'
+    alignment_table += 'table.outer .scrollable-col { max-height: 300px; overflow-y: auto; }\n'
+    alignment_table += 'table.outer td.seq-name { font-weight: bold; font-size: 10px; padding: 0px; position: sticky; left: 0; z-index: 1; background-color: white; }\n'
+    alignment_table += 'table.outer td.seq-data { position: relative; }\n'
+    alignment_table += 'table.seq-table { border-collapse: collapse; }\n'
+    alignment_table += 'table.seq-table td { border: none; font-size: 10px; padding: 0px; monospace;}\n'
+
+
+    for nucleotide, color in color_codes.items():
+        alignment_table += f'table.outer td.seq-data .{nucleotide} {{ background-color: {color}; }}\n'
+
+    alignment_table += '</style>\n</head>\n<body>\n'
+    alignment_table += '<div style="overflow-x:auto;">\n'  # Add a scrollable div container
+    alignment_table += '<table class="outer">\n'
+
+    for header, seq in fasta.items():
+        seq_name = header
+        alignment_table += '<tr>\n'
+        alignment_table += f'<td class="seq-name">{seq_name}</td>\n'
+        alignment_table += '<td class="seq-data scrollable-col">\n'
+        alignment_table += '<table class="seq-table">\n'
+        alignment_table += '<tr>\n'
+
+        for nucleotide in seq:
+            color = color_codes.get(nucleotide, 'white')
+            alignment_table += f'<td style="background-color: {color};">{nucleotide}</td>'
+
+        alignment_table += '\n</tr>\n'
+        alignment_table += '</table>\n'
+        alignment_table += '</div>\n'
+        alignment_table += '</td>\n'
+        alignment_table += '</tr>\n'
+
+
+    alignment_table += '</table>\n'
+    alignment_table += '</div>\n'  # Close the div container
+    alignment_table += '</body>\n'
 
 # make HTML output from primer3 result file
 html_file = f'{outdir}/consensus_prime_summary.html'
@@ -644,9 +703,12 @@ with open(html_file, 'w') as outfile:
 #    outfile.write(HTML.table(alignment_statistic_table, header_row=['Fasta/Alignment', 'Number of Sequences']) + '\n')
     outfile.write(to_html_table(alignment_statistic_table, header=['Fasta/Alignment', 'Number of Sequences']))
     outfile.write('<br><hr><br>\n')
-    outfile.write('<h2 id="finalalignment">Final Alignment</h2>\n')
-    outfile.write(os.path.abspath(f'{outdir}/final_alignment.fna'))
-    outfile.write('<br><hr><br>')
+    # alignment table
+    if primer_dict:
+        outfile.write('<h2 id="finalalignment">Final Alignment</h2>\n')
+        outfile.write(os.path.abspath(f'{outdir}/final_alignment.fna<p>\n'))
+        outfile.write(alignment_table)
+        outfile.write('<br><hr><br>\n')
     #outfile.write(HTML.link('Final alignment',f'{outdir}/final_alignment.fna'))
     outfile.write('<h2 id="primer3param">Primer3 Parameter Summary</h2>\n')
     outfile.write(to_html_table(summary_table, header=['Parameter','Value']))
@@ -664,7 +726,4 @@ with open(html_file, 'w') as outfile:
 
 
 print('(>°o°)> Done. <(°o°<)')
-
-
-
 
